@@ -15,7 +15,22 @@ fi
 
 # Finally we can source the dotfiles (order matters)
 echo $DOTFILES_DIR
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt}; do
     echo $DOTFILE
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
+
+
+# Set LSCOLORS
+
+eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
+
+
+# Clean up
+
+unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
+
+
+# Export
+
+export DOTFILES_DIR

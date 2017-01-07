@@ -80,5 +80,11 @@ alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 
 # Recursively remove Apple meta files
 
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
-alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+alias cleanupDS="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
+alias cleanupAD="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+
+# Show / Hide hidden files
+
+alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
