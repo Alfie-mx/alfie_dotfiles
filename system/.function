@@ -1,9 +1,53 @@
+# Get named var (usage: get "VAR_NAME")
+
+get() {
+  echo "${!1}"
+}
+
+
+# Executable
+
+is-executable() {
+  local BIN=$(command -v "$1" 2>/dev/null)
+  if [[ ! $BIN == "" && -x $BIN ]]; then true; else false; fi
+}
+
+is-supported() {
+  if [ $# -eq 1 ]; then
+    if eval "$1" > /dev/null 2>&1; then true; else false; fi
+  else
+    if eval "$1" > /dev/null 2>&1; then
+      echo -n "$2"
+    else
+      echo -n "$3"
+    fi
+  fi
+}
+
+
+# Add to path
+
+prepend-path() {
+  [ -d $1 ] && PATH="$1:$PATH"
+}
+
+
 # Weather
 
 meteo () {
-  local CITY=${1:-Utrecht}
+  local CITY=${1:-Vancouver}
   curl -4 "wttr.in/$CITY"
 }
+
+
+#   my_ps: List processes owned by my user
+
+my_ps() {
+    ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ;
+}
+
+
+# Test function
 
 funky ()
 { # This is about as simple as functions get.

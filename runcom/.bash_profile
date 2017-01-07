@@ -15,7 +15,7 @@ fi
 
 # Finally we can source the dotfiles (order matters)
 echo $DOTFILES_DIR
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias}; do
     echo $DOTFILE
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
